@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ScintillaNET>
+  <Language name="default">
+    <Indentation ShowGuides="true" />
+    <Caret CurrentLineBackgroundColor="Lavender" />
+
+    <Styles>
+      <Style Name="default" FontName="Consolas" />
+      <Style Name="LineNumber" BackColor="#E6E6E6" ForeColor="#888888" />
+    </Styles>
+
+    <Margins FoldMarginColor="DarkRed">
+    </Margins>
+
+  </Language>
+
+  <Language Name="ruby">
+    
+    <Lexer>
+      <Keywords List="0" Inherit="False">
+        __FILE__ and def end in or self unless __LINE__ 
+        begin defined? ensure module redo super until 
+        BEGIN break do false next rescue then when END 
+        case else for nil retry true while alias class 
+        elsif if not return undef yield require include
+      </Keywords>
+    </Lexer>    
+    
+    <Styles>
+      <Style Name="WORD"	  ForeColor="Blue" Bold="true"/>
+      <Style Name="WORD2"   ForeColor="Teal"/>
+      <Style Name="WORD3"   ForeColor="DarkGreen"/>
+      <Style Name="WORD4"   ForeColor="DarkRed"/>
+      <Style Name="CHARACTER"	ForeColor="Brown" />
+
+      <!-- Ruby specific styles -->
+      <Style Name="DOCUMENT_DEFAULT" />
+      <Style Name="ERROR" />
+      <Style Name="COMMENTLINE" ForeColor="Green" />
+      <Style Name="POD" ForeColor="Green"/>
+      <Style Name="NUMBER" />
+      <Style Name="WORD" />
+      <Style Name="STRING" ForeColor="Brown" />
+      <Style Name="CHARACTER" />
+      <Style Name="CLASSNAME" ForeColor="Teal" Bold="true" />
+      <Style Name="DEFNAME" ForeColor="#7F7FFF" BackColor="LightYellow" Bold="true" />
+      <Style Name="OPERATOR" ForeColor="Navy"/>
+      <Style Name="IDENTIFIER" ForeColor="DarkSlateGray" />
+      <Style Name="REGEX" ForeColor="#0080FF" />
+      <Style Name="GLOBAL" ForeColor="Navy"/>
+      <Style Name="SYMBOL" />
+      <Style Name="MODULE_NAME" ForeColor="#804000" Bold="true" />
+      <Style Name="INSTANCE_VAR" />
+      <Style Name="CLASS_VAR" />
+      <Style Name="BACKTICKS" />
+      <Style Name="DATASECTION" />
+      <Style Name="HERE_DELIM" ForeColor="Brown" />
+      <Style Name="HERE_Q"  ForeColor="Brown" />
+      <Style Name="HERE_QQ" />
+      <Style Name="HERE_QX" />
+      <Style Name="STRING_Q"  />
+      <Style Name="STRING_QQ" />
+      <Style Name="STRING_QX" />
+      <Style Name="STRING_QR" />
+      <Style Name="STRING_QW" />
+      <Style Name="WORD_DEMOTED" />
+      <Style Name="STDIN" />
+      <Style Name="STDOUT" />
+      <Style Name="STDERR" />
+      <Style Name="UPPER_BOUND" />
+    </Styles>
+    
+    </Language> 
+  
+</ScintillaNET>
