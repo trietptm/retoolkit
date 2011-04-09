@@ -1,12 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GenHook", "x86GenHook\x86GenHook.vcproj", "{3C68E3A3-3F06-4064-8DDB-3808D0C40E84}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7C4CF52C-3FD7-48E4-A497-0D8F9D4C74A4} = {7C4CF52C-3FD7-48E4-A497-0D8F9D4C74A4}
-		{E288743B-7428-42A0-9FB3-259FBA8E9A74} = {E288743B-7428-42A0-9FB3-259FBA8E9A74}
-		{68A83ACB-307B-4C5E-9E6A-436F4CF5CD42} = {68A83ACB-307B-4C5E-9E6A-436F4CF5CD42}
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GenHook", "x86GenHook\x86GenHook.vcxproj", "{3C68E3A3-3F06-4064-8DDB-3808D0C40E84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenHookNet", "GenHookWrapper\GenHookNet.csproj", "{96AA12DD-2C4D-4C0E-BBE0-12444EEC6D7F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -20,16 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retoolkit", "RubyHook\Retoo
 		{E288743B-7428-42A0-9FB3-259FBA8E9A74} = {E288743B-7428-42A0-9FB3-259FBA8E9A74}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleInjector", "ConsoleInjector\ConsoleInjector.vcproj", "{FABEA508-2132-4288-9087-03F82EF2530B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{32E5237B-EA8A-47B2-91EB-458014C2143F} = {32E5237B-EA8A-47B2-91EB-458014C2143F}
-		{3C68E3A3-3F06-4064-8DDB-3808D0C40E84} = {3C68E3A3-3F06-4064-8DDB-3808D0C40E84}
-		{68A83ACB-307B-4C5E-9E6A-436F4CF5CD42} = {68A83ACB-307B-4C5E-9E6A-436F4CF5CD42}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleInjector", "ConsoleInjector\ConsoleInjector.vcxproj", "{FABEA508-2132-4288-9087-03F82EF2530B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsmJit", "Asmjit\AsmJit.vcproj", "{68A83ACB-307B-4C5E-9E6A-436F4CF5CD42}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsmJit", "Asmjit\AsmJit.vcxproj", "{68A83ACB-307B-4C5E-9E6A-436F4CF5CD42}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdisasm", "libdisasm\libdisasm.vcproj", "{7C4CF52C-3FD7-48E4-A497-0D8F9D4C74A4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdisasm", "libdisasm\libdisasm.vcxproj", "{7C4CF52C-3FD7-48E4-A497-0D8F9D4C74A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
