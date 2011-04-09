@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "libdis.h"
-#include <inttypes.h>
+#include "inttypes.h"
 
 #ifdef _MSC_VER
         #define snprintf        _snprintf
