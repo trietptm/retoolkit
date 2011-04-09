@@ -1,0 +1,15 @@
+syntax: glob
+*.tlog
+*.obj
+*.manifest
+*.log
+*.lib
+*.pdb
+*.res
+*.sdf
+*.opensdf
+*.idb
+*.rc
+*.lastbuildstate
+*.ipch
+Debug
