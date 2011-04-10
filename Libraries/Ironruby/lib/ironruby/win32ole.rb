@@ -2,11 +2,11 @@
 #
 # Copyright (c) Microsoft Corporation. 
 #
-# This source code is subject to terms and conditions of the Microsoft Public License. A 
+# This source code is subject to terms and conditions of the Apache License, Version 2.0. A 
 # copy of the license can be found in the License.html file at the root of this distribution. If 
-# you cannot locate the  Microsoft Public License, please send an email to 
+# you cannot locate the  Apache License, Version 2.0, please send an email to 
 # ironruby@microsoft.com. By using this source code in any fashion, you are agreeing to be bound 
-# by the terms of the Microsoft Public License.
+# by the terms of the Apache License, Version 2.0.
 #
 # You must not remove this notice, or any other, from this software.
 #
@@ -48,10 +48,7 @@ class WIN32OLE
   
   # Used to set indexed property
   def setproperty(name, *args)
-    indices = args[0...-1]
-    value = args[-1]
-    property = @com_object.send name # DLR allows getting to a bound property holder
-    property[*indices] = value
+    method_missing "#{name}=", *args
   end
   
   def each(&b)
@@ -72,7 +69,7 @@ class WIN32OLE
     converted_args = ruby_to_com_interop_types(args)
     
     begin
-      result = call_method name, converted_args
+      result = @com_object.send(name, *converted_args)
     rescue => e
       # Make sure the method name is in the exception message (useful for COMException)
       raise e if e.message =~ /#{name}/
@@ -121,19 +118,16 @@ class WIN32OLE
     /[{]?[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}[}]?|[0-9A-F]{32}/ =~ str
   end
 
-  # The DLR COM binder only supports core types like System.String as arguments.
-  # Passing in a Ruby String will not work. So we convert the Ruby types to
-  # CLR COM interop types as expected by the DLR COM binder
   def ruby_to_com_interop_type(arg)
     case arg
     when String
-      arg.to_clr_string
+      arg.to_str
     when Array
       element_type = ruby_to_com_interop_type(arg[0]).class
       converted_elements = ruby_to_com_interop_types arg
       System::Array[element_type].new converted_elements
     when WIN32OLE
-      @com_object
+      arg.com_object
     else
       arg
     end
@@ -141,29 +135,6 @@ class WIN32OLE
   
   def ruby_to_com_interop_types(args)
     args.map { |arg| ruby_to_com_interop_type arg }
-  end
-  
-  def call_method(name, converted_args)
-    if converted_args.size == 1 and converted_args[0] and converted_args[0].kind_of? System::Array
-      # Calling "send" binds to the overload of "send" with "params object[]"
-      # (this behavior only seems to happen in the presence of COM objects).
-      # Hence, we use eval as a work-around
-      a = converted_args[0]
-      result = eval("@com_object.#{name}(a)")
-    else
-      begin
-        result = @com_object.send name, *converted_args
-      rescue ArgumentError => e
-        # TODO - In most cases, the send above binds to Kernel#send, and it works as expected
-        # In some cases (seems to be just with the ADODB.Connection COM object), IronRuby tries to call 
-        # :send on the COM object which causes an ArgumentError. So we handle that case directly here.
-        if name.to_s[-1..-1] == "="
-          result = eval("@com_object.#{name.to_s[0...-1]} = converted_args[0]")
-        else
-          result = eval("@com_object.#{name}(*converted_args)")
-        end
-      end
-    end
   end
   
   def convert_return_value(result)
