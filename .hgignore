@@ -15,3 +15,4 @@ syntax: glob
 Debug
 Asmjit/AsmJit.vcproj.ASROCKPC.James.user
 libdisasm/libdisasm.vcproj.ASROCKPC.James.user
+*.suo
