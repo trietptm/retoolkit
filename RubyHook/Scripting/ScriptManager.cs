@@ -28,6 +28,7 @@ using IronRuby.Runtime;
 using IronRuby.Builtins;
 using Retoolkit.Interfaces;
 using Retoolkit.Properties;
+using Microsoft.Scripting.Hosting.Providers;
 
 namespace Retoolkit.Scripting
 {
@@ -255,7 +256,7 @@ namespace Retoolkit.Scripting
       engine.SetSearchPaths(libPathProvider.Paths);
 
       // Expose global objects
-      var ctx = Ruby.GetExecutionContext(engine.Runtime);
+      var ctx = HostingHelpers.GetLanguageContext(engine) as RubyContext;
       ctx.DefineReadOnlyGlobalVariable(
         "onError",
         new Action<MutableString, RubyArray>(TriggerErrorEventFromRuby) // #onError(message, backtrace)
@@ -264,13 +265,6 @@ namespace Retoolkit.Scripting
       // HACK: needed to set $0 == <main script filename>
       ctx.DefineGlobalVariable("0", Path.GetFileName(MainScript));
       ctx.DefineReadOnlyGlobalVariable("pr", m_pathResolver);
-
-      // try require hacks.rb, from the IronRuby stdlib
-      // needed to make things more Ruby compatible (TOPLEVEL_BINDING constant, etc)
-      try { engine.RequireRubyFile("hacks"); }
-      catch (LoadError)
-      { // user doesn't have path set, no big deal
-      }
 
       // Create initial script source
       m_scriptSrc = engine.CreateScriptSourceFromFile(
@@ -311,7 +305,7 @@ namespace Retoolkit.Scripting
           ScriptEngineRestarting(this, new EventArgs());
         }
 
-        var context = Ruby.GetExecutionContext(m_engine);
+        var context = HostingHelpers.GetLanguageContext(m_engine);
         context.Shutdown();
         m_engine = CreateAndInitEngine();
 
